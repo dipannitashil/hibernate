@@ -1,1 +1,2 @@
-insert into course(id, name) values (10001, 'English');
+insert into course(id, fullname, created_date, last_updated_time) 
+values (10001, 'English', sysdate(), sysdate());
