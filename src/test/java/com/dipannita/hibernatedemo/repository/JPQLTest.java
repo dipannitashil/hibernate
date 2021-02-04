@@ -47,6 +47,13 @@ public class JPQLTest {
 		logger.info("Select c from Course c -> {}", resultList);
 	}
 	
+	@Test
+	void testJpql_namedQuery() {
+		TypedQuery<Course> typedQuery = em.createNamedQuery("query_get_all_courses", Course.class);
+		List<Course> resultList = typedQuery.getResultList();
+		logger.info("Select c from Course c -> {}", resultList);
+	}
+	
 	
 
 }
