@@ -21,9 +21,9 @@ public class Runner {
 	StudentRepository studentRepository;
 	
 	public void run() {
-		Course course = courseRepository.findById(10001);
-		logger.info("Course 10001- {}", course);
-		studentRepository.saveStudentWithPassport();
+//		Course course = courseRepository.findById(10001);
+//		logger.info("Course 10001- {}", course);
+//		studentRepository.saveStudentWithPassport();
 	}
 
 }
