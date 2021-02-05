@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.dipannita.hibernatedemo.entity.Course;
 import com.dipannita.hibernatedemo.entity.Passport;
 import com.dipannita.hibernatedemo.entity.Student;
 
@@ -74,6 +75,16 @@ public class StudentRepository {
 		student1.setPassport(passport1);
 		em.persist(student1);
 		em.flush();
+	}
+	
+	@Transactional
+	public void saveStudentWithCourse(Student student, Course course) {
+		
+		em.persist(student);
+		em.persist(course);
+		student.addCourse(course);
+		course.addStudent(student);
+		
 	}
 
 }

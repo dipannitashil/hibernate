@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import com.dipannita.hibernatedemo.entity.Course;
 import com.dipannita.hibernatedemo.entity.Passport;
 import com.dipannita.hibernatedemo.entity.Student;
 
@@ -19,7 +20,7 @@ public class StudentRepositoryTest {
 private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	CourseRepository cr; 
+	StudentRepository sr; 
 	
 	@Autowired
 	EntityManager em;
@@ -32,7 +33,7 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	 */
 	@Transactional
 	void findById_test() {
-		Student student = em.find(Student.class, 2l);
+		Student student = em.find(Student.class, 20001l);
 		/**
 		 * on debugging, we see that student also contains passport object
 		 * this is EAGER FETCHING (Default)
@@ -48,7 +49,7 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Transactional
 	@DirtiesContext
 	void complex_test() {
-		Student student = em.find(Student.class, 2l);
+		Student student = em.find(Student.class, 20001l);
 		logger.info("student -> {}", student.getName());
 		// join performed at this point
 		Passport passport = student.getPassport();
@@ -56,6 +57,27 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		
 		passport.setName("EXCD23456");
 		student.setName("Aimee Gibbs");
+	}
+	
+	@Test
+	@Transactional
+	void retrieveStudentCourses_test() {
+		Student student = em.find(Student.class, 20001l);
+		logger.info("student -> {}", student.getName());
+		
+		logger.info("student courses -> {}", student.getCourses());
+	}
+	
+	@Test
+	@Transactional
+	@DirtiesContext
+	void addStudentCourse_test() {
+		Student student = new Student("Shahrukh");
+		Course course = new Course("Biology");
+		sr.saveStudentWithCourse(student, course);
+		logger.info("student -> {}", student.getName());
+		
+		logger.info("student courses -> {}", student.getCourses());
 	}
 
 }

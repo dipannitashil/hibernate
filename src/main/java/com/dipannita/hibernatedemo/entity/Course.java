@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -55,6 +56,16 @@ public class Course {
 	 */
 	@OneToMany(mappedBy = "course")
 	private List<Review> reviews = new ArrayList<>();
+	
+	/**
+	 * Student will be the owning side 
+	 * of the relationship
+	 * so join table will be student_courses
+	 * name can me changed by adding @JoinTable
+	 * on owning side.
+	 */
+	@ManyToMany(mappedBy = "courses")
+	private List<Student> students = new ArrayList<>();
 
 	public Course() {
 	}
@@ -104,4 +115,17 @@ public class Course {
 		this.reviews.remove(review);
 	}
 
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void addStudent(Student student) {
+		this.students.add(student);
+	}
+	
+	public void removeStudent(Student student) {
+		this.students.remove(student);
+	}
+
+	
 }
