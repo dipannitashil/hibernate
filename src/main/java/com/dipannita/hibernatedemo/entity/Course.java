@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Table and Entity names are same. If we want table name to be different
  * use @Table("name")
@@ -65,6 +67,7 @@ public class Course {
 	 * on owning side.
 	 */
 	@ManyToMany(mappedBy = "courses")
+	@JsonIgnore // students contains passport which again contains students
 	private List<Student> students = new ArrayList<>();
 
 	@Override

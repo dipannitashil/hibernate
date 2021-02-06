@@ -2,13 +2,13 @@ package com.dipannita.hibernatedemo.repository;
 
 import java.util.List;
 
-import javax.persistence.NamedQuery;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.dipannita.hibernatedemo.entity.Course;
 
+@RepositoryRestResource(path="courses") // NOT FOR PRODUCTION!!
 public interface CourseSpringDataRepository extends JpaRepository<Course, Long> {
 
 	List<Course> findByName(String string);
