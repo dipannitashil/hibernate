@@ -18,6 +18,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import com.dipannita.hibernatedemo.entity.Course;
 import com.dipannita.hibernatedemo.entity.Review;
+import com.dipannita.hibernatedemo.entity.Review.ReviewRating;
 // can specify from where to load context
 @SpringBootTest // (classes=HibernatedemoApplication.class)
 public class CourseRepositoryTest {
@@ -66,8 +67,8 @@ public class CourseRepositoryTest {
 		int initialSize = courseInitial.getReviews().size();
 		
 		List<Review> reviews = new ArrayList<>();
-		reviews.add(new Review(null, "superb"));
-		reviews.add(new Review(null, "unsatisfied"));
+		reviews.add(new Review(null, ReviewRating.THREE));
+		reviews.add(new Review(null, ReviewRating.THREE));
 		cr.addReviewsForCourse(10003L, reviews);
 		
 		Course course = cr.findById(10003l);

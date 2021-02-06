@@ -20,11 +20,11 @@ insert into student(id, name, passport_id)
 values (20003, 'Dipu', 30003);
 
 insert into review(id, description, rating, course_id)
-values (30001, null, 'wow', 10001);
+values (30001, null, 1, 10001);
 insert into review(id, description, rating, course_id)
-values (30002, null, 'amazing', 10001);
+values (30002, null, 2, 10001);
 insert into review(id, description, rating, course_id)
-values (30003, null, 'love it', 10003);
+values (30003, null, 2, 10003);
 
 insert into student_course(student_id, course_id)
 values(20001, 10001);

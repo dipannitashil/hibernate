@@ -1,6 +1,8 @@
 package com.dipannita.hibernatedemo.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -8,12 +10,19 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Review {
 
+	public enum ReviewRating {
+		ONE, TWO, THREE, FOUR, FIVE;
+	}
+
 	@Id
 	@GeneratedValue
 	private Long id;
 
 	private String description;
-	private String rating;
+	// so that we dont depend on ordinals
+	// ordinals depend on position of the enum!
+	@Enumerated(EnumType.STRING)
+	private ReviewRating rating;
 	
 	@Override
 	public String toString() {
@@ -29,7 +38,7 @@ public class Review {
 		super();
 	}
 
-	public Review(String description, String rating) {
+	public Review(String description, ReviewRating rating) {
 		super();
 		this.description = description;
 		this.rating = rating;
@@ -43,11 +52,11 @@ public class Review {
 		this.description = description;
 	}
 
-	public String getRating() {
+	public ReviewRating getRating() {
 		return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(ReviewRating rating) {
 		this.rating = rating;
 	}
 
