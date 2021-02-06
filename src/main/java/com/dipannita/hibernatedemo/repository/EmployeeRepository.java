@@ -26,6 +26,7 @@ public class EmployeeRepository {
 	}
 	
 	public List<Employee> getAllEmployees() {
+		// done using union in Table per class strategy!
 		return em.createQuery("select e FROM Employee e", Employee.class).getResultList();
 		
 	}
