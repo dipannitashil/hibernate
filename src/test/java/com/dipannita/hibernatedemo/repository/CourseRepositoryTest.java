@@ -34,9 +34,9 @@ public class CourseRepositoryTest {
 	@Test
 	@DirtiesContext // reset data for other tests
 	void deleteById_test() {
-		cr.deleteById(10001);
+		cr.deleteById(10004);
 		
-		assertNull(cr.findById(10001));
+		assertNull(cr.findById(10004));
 	}
 	
 	@Test
