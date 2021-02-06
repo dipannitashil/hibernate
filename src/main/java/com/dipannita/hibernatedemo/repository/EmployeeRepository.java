@@ -1,5 +1,7 @@
 package com.dipannita.hibernatedemo.repository;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,8 +29,18 @@ public class EmployeeRepository {
 	
 	public List<Employee> getAllEmployees() {
 		// done using union in Table per class strategy!
-		return em.createQuery("select e FROM Employee e", Employee.class).getResultList();
+		// wont work in mapped superclass as Employee is no longer an entity!
+//		return em.createQuery("select e FROM Employee e", Employee.class).getResultList();
+		return Collections.emptyList();
 		
+	}
+	
+	public List<Employee> getAllFullTimeEmployees() {
+		return em.createQuery("select e FROM FullTmeEmployee e", Employee.class).getResultList();		
+	}
+	
+	public List<Employee> getAllPartTimeEmployees() {
+		return em.createQuery("select e FROM PartTimeEmployee e", Employee.class).getResultList();		
 	}
 	
 	public Employee findById(long id) {
