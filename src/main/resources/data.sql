@@ -1,9 +1,9 @@
-insert into course(id, fullname, created_date, last_updated_time) 
-values (10001, 'English', sysdate(), sysdate());
-insert into course(id, fullname, created_date, last_updated_time) 
-values (10003, 'Hindi', sysdate(), sysdate());
-insert into course(id, fullname, created_date, last_updated_time) 
-values (10004, 'French', sysdate(), sysdate());
+insert into course(id, fullname, created_date, last_updated_time, is_deleted) 
+values (10001, 'English', sysdate(), sysdate(), false);
+insert into course(id, fullname, created_date, last_updated_time, is_deleted) 
+values (10003, 'Hindi', sysdate(), sysdate(), false);
+insert into course(id, fullname, created_date, last_updated_time, is_deleted) 
+values (10004, 'French', sysdate(), sysdate(), false);
 
 insert into passport(id, name)
 values (30001, 'EKCF12345');

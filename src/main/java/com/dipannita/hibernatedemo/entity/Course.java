@@ -12,8 +12,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,6 +31,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 // for multiple name queries
 @NamedQueries(value = { @NamedQuery(name = "query_get_all_courses", query = "Select c from Course c"),
 		@NamedQuery(name = "query_get_all_courses_like_h", query = "Select c from Course c where name like '%h'") })
+// call everytime a course is deleted
+@SQLDelete(sql="update course set is_deleted= true where id=?")
+// retrieve only those rows that satisfy this clause!
+@Where(clause= "is_deleted=false")
 public class Course {
 
 	@Id
@@ -69,6 +76,19 @@ public class Course {
 	@ManyToMany(mappedBy = "courses")
 	@JsonIgnore // students contains passport which again contains students
 	private List<Student> students = new ArrayList<>();
+	
+	private boolean isDeleted;
+	
+	@PreRemove // entity lifecycle method
+	/**
+	 * without this db will get updated
+	 * but entity is_deleted remains false.
+	 * manually setting true is risky
+	 * so we use this hook!
+	 */ 
+	private void preRemove() {
+		isDeleted = true;
+	}
 
 	@Override
 	public String toString() {

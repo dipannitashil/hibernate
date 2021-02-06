@@ -24,7 +24,10 @@ public class NativeQueriesTest {
 
 	@Test
 	void testNativeQueries_basic() {
-		Query query = em.createNativeQuery("SELECT * FROM COURSE", Course.class);
+		// native queries dont use @Where annotation
+		// need to add clause yourself
+//		Query query = em.createNativeQuery("SELECT * FROM COURSE", Course.class);
+		Query query = em.createNativeQuery("SELECT * FROM COURSE where is_deleted= false", Course.class);
 		List resultList = query.getResultList();
 		logger.info("Select c from Course c -> {}", resultList);
 	}
