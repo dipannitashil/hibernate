@@ -30,6 +30,11 @@ public class Student {
 	inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<Course> courses = new ArrayList<>();
 
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", passport=" + passport + ", courses=" + courses + "]";
+	}
+
 	public Student() {
 		super();
 	}

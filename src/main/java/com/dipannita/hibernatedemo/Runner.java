@@ -32,9 +32,9 @@ public class Runner {
 //		logger.info("Course 10001- {}", course);
 //		studentRepository.saveStudentWithPassport();
 		
-		er.insert(new FullTmeEmployee("Dips", new BigDecimal(1000l)));
-		er.insert(new PartTimeEmployee("Dipa", new BigDecimal(1000l)));
-		logger.info("Employees -> {}", er.getAllEmployees());
+//		er.insert(new FullTmeEmployee("Dips", new BigDecimal(1000l)));
+//		er.insert(new PartTimeEmployee("Dipa", new BigDecimal(1000l)));
+//		logger.info("Employees -> {}", er.getAllEmployees());
 	}
 
 }

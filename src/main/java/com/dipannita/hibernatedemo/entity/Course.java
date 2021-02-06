@@ -67,6 +67,12 @@ public class Course {
 	@ManyToMany(mappedBy = "courses")
 	private List<Student> students = new ArrayList<>();
 
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + ", createdDate=" + createdDate + ", lastUpdatedTime="
+				+ lastUpdatedTime + "]";
+	}
+
 	public Course() {
 	}
 
