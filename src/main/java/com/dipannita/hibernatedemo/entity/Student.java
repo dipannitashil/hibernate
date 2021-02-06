@@ -3,6 +3,8 @@ package com.dipannita.hibernatedemo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,12 +25,13 @@ public class Student {
 
 	@OneToOne(fetch = FetchType.LAZY) // passport_id foreign key
 	private Passport passport;
-	
+
 	@ManyToMany
-	@JoinTable(name = "student_course", 
-	joinColumns = @JoinColumn(name = "student_id"), 
-	inverseJoinColumns = @JoinColumn(name = "course_id"))
+	@JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<Course> courses = new ArrayList<>();
+
+	@Embedded
+	private Address address;
 
 	@Override
 	public String toString() {
@@ -71,6 +74,17 @@ public class Student {
 	public void addCourse(Course course) {
 		this.courses.add(course);
 	}
-	
-	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
 }

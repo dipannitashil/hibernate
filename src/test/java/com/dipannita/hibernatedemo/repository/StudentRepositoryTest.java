@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import com.dipannita.hibernatedemo.entity.Address;
 import com.dipannita.hibernatedemo.entity.Course;
 import com.dipannita.hibernatedemo.entity.Passport;
 import com.dipannita.hibernatedemo.entity.Student;
@@ -80,4 +81,15 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		logger.info("student courses -> {}", student.getCourses());
 	}
 
+	
+	@Test
+	@Transactional
+	@DirtiesContext
+	void addAddress_test() {
+		Student student =em.find(Student.class, 20001l);
+		student.setAddress(new Address("Delhi", "India"));
+		em.flush();
+		logger.info("student -> {}", student.getName());
+		
+	}
 }
